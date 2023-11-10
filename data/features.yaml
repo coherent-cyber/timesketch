@@ -63,6 +63,15 @@
 # the added tag is added (only if there are results).
 # ------------------------------------------------------------------------
 
+mem_netscan_ip_addresses:
+        query_string: 'data_type: "fs:bodyfile:entry" AND message:"Netscan"'
+        attribute: 'message'
+        re: '(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
+        store_as: 'ip_address'
+        tags: ['NetScan - IP']
+        create_view: True
+        aggregate: True
+
 email_addresses:
         query_string: 'source_short:"WEBHIST"'
         attribute: 'message'
